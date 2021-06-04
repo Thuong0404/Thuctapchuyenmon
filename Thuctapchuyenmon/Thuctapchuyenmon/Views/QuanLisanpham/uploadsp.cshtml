@@ -1,0 +1,87 @@
+﻿@model Thuctapchuyenmon.Models.SanPham
+
+@{
+    ViewBag.Title = "uploadsp";
+    Layout = "~/Views/Home/layoutAdmin.cshtml";
+}
+
+<h2>Chỉnh sửa sản phẩm</h2>
+
+@using (Html.BeginForm("uploadsp", "QuanLisanpham", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div style="width:700px; font-size:12px" class="form-horizontal">
+        <h2 style="text-align:center">Chỉnh sửa sản phẩm</h2>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.Hidden("ID", Model)
+        <div style=" font-size:12px" class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div style=" font-size:12px" class="form-group">
+            @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div style=" font-size:12px" class="form-group">
+            @Html.LabelFor(model => model.Anh, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input name="Anh" type="file" />
+
+                <span style="color:red">@ViewBag.upload</span>
+                <img src="@Url.Content("~/Content/Images/"+ @Model.Anh)" width="200" height="200" />
+            </div>
+        </div>
+
+        <div style=" font-size:12px" class="form-group">
+            @Html.LabelFor(model => model.Id_NhomSp, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Id_NhomSp", null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Id_NhomSp, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div style=" font-size:12px" class="form-group">
+            @Html.LabelFor(model => model.Id_NSX, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Id_NSX", null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Id_NSX, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div style=" font-size:12px" class="form-group">
+            @Html.LabelFor(model => model.Gia, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Gia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div style=" font-size:12px" class="form-group">
+            @Html.LabelFor(model => model.SoLuongTon, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div style=" font-size:12px" class="col-md-10">
+                @Html.EditorFor(model => model.SoLuongTon, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SoLuongTon, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div style=" font-size:12px" class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input style=" font-size:12px ; background:#ed71a3; color:white" type="submit" value="UpDate" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+<a href="/Home/layoutAdmin" style="color:white; Background:#ed71a3" class="btn btn-warning btn-md">
+    <i class="fa fa-arrow-left"
+       aria-hidden="true"></i>&nbsp;  Trang chủ
+</a>

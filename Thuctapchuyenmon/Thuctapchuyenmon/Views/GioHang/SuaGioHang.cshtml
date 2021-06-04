@@ -1,0 +1,200 @@
+﻿@using Thuctapchuyenmon.Models
+@model GioHang
+@{
+    Layout = null;
+    List<GioHang> listgiohang = ViewBag.Giohang as List<GioHang>;
+}
+    <html>
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Thông tin giỏ hàng</title>
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="~/Content/Images/login//vendor/bootstrap/css/bootstrap.min.css" type="text/css">
+        <!-- Font awesome -->
+        <link rel="stylesheet" href="~/Content/Images/login//vendor/font-awesome/css/font-awesome.min.css" type="text/css">
+
+        <!-- Custom css - Các file css do chúng ta tự viết -->
+        <link rel="stylesheet" href="../assets/css/app.css" type="text/css">
+
+
+        <style>
+            .seach {
+                background: #ed71a3;
+                color: white;
+                font-size: 24px;
+                padding: 0 60px;
+                height: 108px;
+                width: 50px;
+                text-transform: uppercase;
+                border-top-right-radius: 30px;
+                border-bottom-right-radius: 30px;
+                line-height: 48px;
+                float: left;
+                border-color: #ed71a3;
+                border: hidden;
+            }
+
+            .input-group-btn {
+                position: relative;
+                white-space: nowrap;
+                width: 1%;
+                padding: 0;
+            }
+
+            .img {
+                padding: 5px 0;
+            }
+
+            div.a {
+                margin: auto;
+                width: 60%;
+                padding-bottom: 50px;
+                padding-left: 100px;
+                margin-left: 100px;
+            }
+
+            .right {
+                float: right;
+                height: 80px;
+            }
+        </style>
+
+
+        <title>Big shope A Ecommerce Category Flat Bootstarp Resposive Website Template | Login :: w3layouts</title>
+
+        <!--theme-style-->
+        <link href="~/css/bootstrap.css" rel="stylesheet" />
+
+        <!--//theme-style-->
+        <link href="~/css/style.css" rel="stylesheet" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <!--fonts-->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+        <!--//fonts-->
+        <script src="~/js/jquery.min.js"></script>
+
+
+
+
+
+        <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet">
+    </head>
+    <body id="page-top">
+        <div class="header">
+            <div style="background:#ed71a3" class="top-header">
+                <div class="container">
+                    <div class="top-header-left">
+                        <ul class="support">
+                            <li><a href="#"><label> </label></a></li>
+                            <li><a href="#">Hotline: <span class="live"> 0339866240</span></a></li>
+                        </ul>
+
+                        <ul class="support">
+
+                            <li><img src="~/Content/Images/Gmail-icon.png" /><a href="https://mail.google.com/mail"> <span>dieuthuong0404@gmail.com</span></a></li>
+                        </ul>
+                        <ul class="support">
+                            <li class="van"><a href="#"><label> </label></a></li>
+                            <li><a href="#">Free shipping <span class="live">on order over 500</span></a></li>
+                        </ul>
+                        <div class="clearfix"> </div>
+                    </div>
+
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+            <div class="bottom-header">
+                <div class="container">
+                    <div class="header-bottom-left">
+                        <div class="logo">
+                            <a href="index.html"><img src="~/images/logo.png" alt=" " /></a>
+                        </div>
+                        <div class="search">
+                            <input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
+                            <input style="background:#ed71a3" type="submit" value="SEARCH">
+
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                    <div class="header-bottom-right">
+                        <div class="account"><a style="color:#ed71a3" href="login.html"><span> @ViewBag.Ten </span> </a></div>
+                        <ul class="login">
+                            <li><a style="color:#ed71a3" href="/Login/Dangnhap"><span> </span>SIN IN</a></li> |
+                            <li><a style="color:#ed71a3" href="/Login/TaoTK">SIGN UP</a></li>
+                        </ul>
+                        <div>
+                            @Html.Action("XemGioHang", "GioHang")
+                        </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+        </div>
+        <table class="table" style="color:#ed71a3; border:solid">
+            <tr>
+                <td>Mã sản phẩm</td>
+                <td>Tên sản phẩm</td>
+                <td>Hình ảnh</td>
+                <td>Số lượng  </td>
+                <td>Giá tiền </td>
+                <td>Thành tiền </td>
+                <td> Yêu cầu</td>
+            </tr>
+            @foreach (var item in listgiohang)
+            {
+                if (Model.MaSP == item.MaSP)
+                {
+                    using (Html.BeginForm("UpdateGioHang", "GioHang"))
+                    {
+                        <tr>
+                            <td>@item.MaSP, @Html.Hidden("MaSp", item.MaSP)</td>
+                            <td>@item.TenSP</td>
+                            <td><img src="~/Content/Images/@item.HAnh" style="width:150px;height:150px" /></td>
+                            <td>@Html.TextBox("SoLuong", item.SoLuong)</td>
+                            <td>@item.DonGia.ToString("")</td>
+                            <td>@item.ThanhTien.ToString("")</td>
+                            <td>
+                                <input type="submit" value="Update " />
+
+                                @Html.ActionLink("Xóa", "XoaGioHang", new { @MaSp = item.MaSP })
+                            </td>
+
+                        </tr>
+                    }
+
+                }
+                else
+                {
+                    <tr>
+                        <td>@item.MaSP</td>
+                        <td>@item.TenSP</td>
+                        <td><img src="~/Content/Images/@item.HAnh" style="width:150px;height:150px" /></td>
+                        <td>@item.SoLuong</td>
+                        <td>@item.DonGia.ToString("")</td>
+                        <td>@item.ThanhTien.ToString("")</td>
+                        <td>
+                            @Html.ActionLink("Sửa", "SuaGioHang", new { @MaSp = item.MaSP })
+                            @Html.ActionLink("Xóa", "XoaGioHang", new { @MaSp = item.MaSP })
+                        </td>
+                    </tr>
+                }
+            }
+
+        </table>
+
+        <a href="/Home/Index" style="color:white; Background:#ed71a3" class="btn btn-warning btn-md">
+            <i class="fa fa-arrow-left"
+               aria-hidden="true"></i>&nbsp;  Trang chủ
+        </a>
+       
+    </body>
+</html>

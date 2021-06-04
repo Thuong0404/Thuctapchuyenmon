@@ -1,0 +1,353 @@
+﻿@using Thuctapchuyenmon.Models
+@model Admin
+
+
+@{
+    Layout = null;
+    List<GioHang> gh = (List<GioHang>)ViewBag.listgiohang;
+    // y bao controler cua view nay dau
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <!-- Required meta tags -->
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Thông tin giỏ hàng</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/Images/login//vendor/bootstrap/css/bootstrap.min.css" type="text/css">
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="~/Content/Images/login//vendor/font-awesome/css/font-awesome.min.css" type="text/css">
+
+    <!-- Custom css - Các file css do chúng ta tự viết -->
+    <link rel="stylesheet" href="../assets/css/app.css" type="text/css">
+
+
+    <style>
+        #login {
+            position: fixed;
+            padding: 5px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            z-index: 99;
+        }
+
+            #login div {
+                margin-top: 13%;
+                text-align: center;
+            }
+
+        .seach {
+            background: #ed71a3;
+            color: white;
+            font-size: 24px;
+            padding: 0 60px;
+            height: 108px;
+            width: 50px;
+            text-transform: uppercase;
+            border-top-right-radius: 30px;
+            border-bottom-right-radius: 30px;
+            line-height: 48px;
+            float: left;
+            border-color: #ed71a3;
+            border: hidden;
+        }
+
+        .input-group-btn {
+            position: relative;
+            white-space: nowrap;
+            width: 1%;
+            padding: 0;
+        }
+       .a{
+            text-align:center;
+        }
+
+        .img {
+            padding: 5px 0;
+        }
+
+        div.a {
+            margin: auto;
+            width: 60%;
+            padding-bottom: 50px;
+            padding-left: 100px;
+            margin-left: 100px;
+        }
+
+        .right {
+            float: right;
+            height: 80px;
+        }
+    </style>
+
+
+    <title>Chào mừng đến với Big Shope</title>
+
+    <!--theme-style-->
+
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+
+    <!--//theme-style-->
+    <link href="~/css/style.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!--fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <!--//fonts-->
+    <script src="~/js/jquery.min.js"></script>
+
+
+
+
+
+    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="~/Content/css/styles.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+<body id="page-top">
+
+
+    <!--header-->
+    <div class="header">
+        <div style="background:#ed71a3" class="top-header">
+            <div class="container">
+                <div class="top-header-left">
+                    <ul class="support">
+                        <li><a href="#"><label> </label></a></li>
+                        <li><a href="#">Hotline: <span class="live"> 0339866240</span></a></li>
+                    </ul>
+
+                    <ul class="support">
+
+                        <li><img src="~/Content/Images/Gmail-icon.png" /><a href="https://mail.google.com/mail"> <span>dieuthuong0404@gmail.com</span></a></li>
+                    </ul>
+                    <ul class="support">
+                        <li class="van"><a href="#"><label> </label></a></li>
+                        <li><a href="#">Free shipping <span class="live">on order over 500</span></a></li>
+                    </ul>
+                    <div class="clearfix"> </div>
+                </div>
+
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+        <div class="bottom-header">
+            <div class="container">
+                <div class="header-bottom-left">
+                    <div class="logo">
+                        <a href="index.html"><img src="~/images/logo.png" alt=" " /></a>
+                    </div>
+                    <div class="search">
+                        <input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
+                        <input style="background:#ed71a3" type="submit" value="SEARCH">
+
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="header-bottom-right">
+                    <div class="account"><a style="color:#ed71a3" href="login.html"><span> @ViewBag.Ten </span> </a></div>
+                    <ul class="login">
+                        <li><a style="color:#ed71a3" href="/Login/Dangnhap"><span> </span>SIN IN</a></li> |
+                        <li><a style="color:#ed71a3" href="/Login/TaoTK">SIGN UP</a></li>
+                    </ul>
+                    <div>
+                        @Html.Action("XemGioHang", "GioHang")
+                    </div>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Masthead-->
+    <main role="main">
+        <!-- Block content - Đục lỗ trên giao diện bố cục chung, đặt tên là `content` -->
+        <div class="container mt-4">
+            <div id="thongbao" class="alert alert-danger d-none face" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+
+            <h1 class="text-center">Giỏ hàng</h1>
+
+            @{ if (gh.Count == 0)
+                {
+                <h1 style="color:#ed71a3">Không có sản phẩm nào giỏ hàng</h1>
+                }
+                else
+                {
+                <table class="table" style="color:#ed71a3; border:solid">
+                    <tr>
+                        <td>Mã sản phẩm</td>
+                        <td>Tên sản phẩm</td>
+                        <td>Hình ảnh</td>
+                        <td>Số lượng  </td>
+                        <td>Giá tiền </td>
+                        <td>Thành tiền </td>
+                    </tr>
+                    @foreach (var item in gh)
+                    {
+                        <tr>
+                            <td>@item.MaSP</td>
+                            <td>@item.TenSP</td>
+                            <td><img src="~/Content/Images/@item.HAnh" style="width:150px;height:150px" /></td>
+                            <td>@item.SoLuong</td>
+                            <td>@item.DonGia.ToString("").000 đồng</td>
+                            <td>@item.ThanhTien.ToString("").000 đông</td>
+                            <td>
+                                @Html.ActionLink("Sửa", "SuaGioHang", new { @MaSp = item.MaSP })
+                                @Html.ActionLink("Xóa", "XoaGioHang", new { @MaSp = item.MaSP })
+                            </td>
+                        </tr>
+
+                    }
+                </table>
+
+
+                        using (Html.BeginForm("Dathang", "GioHang"))
+                        {
+                            <h2 style="text-align:center">Thông tin nhận hàng</h2>
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                           
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group" type="password">
+                                @Html.LabelFor(model => model.PassWord, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.PassWord, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PassWord, "", new { @class = "text-danger" })
+                                </div>  
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                    </div>
+                        <div class="divDathang" style="text-align:right">
+
+                            <button style="color:white; Background:#ed71a3" class="btn btn-primary btn-md" >
+                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp; Đặt hàng
+                            </button>
+                        </div>
+
+                        }
+
+
+
+
+                    }
+                }
+
+            <a href="/Home/Trangchu" style="color:white; Background:#ed71a3" class="btn btn-warning btn-md">
+                <i class="fa fa-arrow-left"
+                   aria-hidden="true"></i>&nbsp;  Trang chủ
+            </a>
+
+        </div>
+          
+    </main>
+
+    
+    <script src="~/Content/Images/login/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/Images/login/vendor/popperjs/popper.min.js"></script>
+    <script src="~/Content/Images/login/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Custom script - Các file js do mình tự viết -->
+    <script src="~/Content/js/app.js"></script>
+    <script >
+        $("#btnDH").click(function () {
+            var loi = 0;
+            if ($('#inputfirstname').val() == "") {
+                $('#TBTen').text("Tên không được phép để trống ");
+                loi++;
+            } else {
+                $('#TBTen').text("");
+            }       
+
+            if ($('#address').val() == "") {
+                $('#TBĐC').text("Địa chỉ không được phép để trống ");
+                 loi++;
+            } else {
+                $('#TBĐC').text("");
+            }      
+            var loi;
+            dingdang = /^[0-9A-Za-z]+[0-9A-Za-z_]*@@[\w\d.]+\.\w{2,4}$/;
+            kiemtra = dingdang.test($("#inputEmailAddress").val());
+            if (!kiemtra) {
+                $('#TBmail').text("Email không hợp lệ");
+                loi++;
+            }
+    
+
+            if ($('#sdt').val() == "") {
+                $('#TBSĐT').text("Số điện thoại không được phép để trống ");
+                  loi++;
+            }
+            else {
+                $('#TBSĐT').text("");
+            }      
+            if (loi != 0) {
+                return false;
+            }
+
+        });
+           
+
+    </script>
+
+</body>
+
+</html>

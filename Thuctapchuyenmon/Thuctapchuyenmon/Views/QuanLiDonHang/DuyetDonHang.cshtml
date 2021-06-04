@@ -1,0 +1,69 @@
+﻿@using Thuctapchuyenmon.Models
+@model Thuctapchuyenmon.Models.DonHang
+        
+
+@{
+    ViewBag.Title = "DuyetDonHang";
+    Layout = "~/Views/Home/layoutAdmin.cshtml";
+}
+
+<h2>
+    Thông tin đơn hàng của khách hàng: <font style="color:red">@Model.UserName</font>
+</h2>
+<br/>
+@using (Html.BeginForm("DuyetDonHang","QuanLiDonHang")) {
+<div class="CTDonHang table">
+    @{ 
+        IEnumerable<CTDonHang> cTDonHangs = (IEnumerable<CTDonHang>)ViewBag.ListCTDH;
+    }
+    <table class="table" id="table">
+        <tr>
+            <td colspan="4">
+                <table style="width:100%">
+                    <tr>
+                        <td style="color:#ed71a3; font-size:11px;">Mã đơn hàng:<b style="color:red"> @Model.ID </b></td>
+                        <td style="color:#ed71a3; font-size:11px;">Mã khách hàng:<b style="color:red"> @Model.UserID</b></td>
+                        <td style="color:#ed71a3; font-size:11px;">Tên khách hàng:<b style="color:red"> @Model.UserName</b></td>
+                        <td style="color:#ed71a3; font-size:11px;">Ngày đặt:@Model.NgayDat</td>
+                        <td style="color:#ed71a3; font-size:11px;" >Tình trạng đơn hàng: @Html.EditorFor(model=>model.TinhTrangDonhang)</td>
+                        <td style="color:#ed71a3; font-size:11px">Tình trạng giao hàng:@Html.EditorFor(model=>model.TinhTrangDonhang) </td>
+                    </tr>
+
+                </table>
+
+            </td>
+
+        </tr>
+        <tr style="color:black;">
+            <td style="color:black; font-size:12px; text-align:center">Tên sản phẩm</td>
+        <td style="color:black; font-size:12px; text-align:center">Hình ảnh </td>
+            <td style="color:black; font-size:12px; text-align:center" >Số lượng</td>
+            <td style="color:black; font-size:12px; text-align:center;" >Đơn giá</td>
+        </tr>
+        
+        @foreach(var item in cTDonHangs)
+        {
+            <tr>
+                <td style="text-align:center" >@item.TenSP</td>
+                <td  style="text-align:center"><img style="width:250px; height:250px" src="~/Content/Images/@item.SanPham.Anh"/></td>
+                <td style="text-align:center">@item.SoLuong</td>
+                <td style="text-align:center">@item.DonGia</td>
+            </tr>
+        }
+       
+    <tr>
+
+        <td style="text-align:right; color:red;font-size:11px" colspan="4">Tổng số lượng sản phâm : @Model.CTDonHangs.Sum(p =>p.SoLuong) </td>
+
+        
+    </tr>
+    <tr>
+        <td style="text-align:right;color:#ed71a3;font-size:11px " colspan="4">Tổng tiền : @Model.CTDonHangs.Sum(p => p.DonGia * p.SoLuong).000 đồng</td>
+    </tr>
+    </table>
+   
+</div>
+<input style="background:#ed71a3; color:white; border-color:#ed71a3; "  type="submit" value="Xuất đơn hàng"/>
+<input style="background:#ed71a3; color:white; border-color:#ed71a3 " type="submit" value="Lưu đơn hàng"  />
+}
+

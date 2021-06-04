@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Thuctapchuyenmon.Models.DonHang>
+@{
+
+    Layout = "~/Views/Home/layoutAdmin.cshtml";
+    WebGrid webGrid = new WebGrid(source: Model, rowsPerPage: 20);
+}
+<h2 style=" color: #ed71a3; text-align:center">Danh sách đơn hàng </h2>
+<div class="ten">
+    <ul class="nav nav-pills" role="tablist">
+
+        <li role="presentation" class="active"><a style="color:white; font-size:19px; background:#ed71a3" href="@Url.Action("ChuaDuyetChuaGiao","QuanLiDonHang")">Chưa duyệt <span class="badge"></span></a></li>
+        <li role="presentation"><a style="color:#ed71a3; font-size:19px;" href="@Url.Action("DaDuyetChuaGiao","QuanLiDonHang")">Đã duyệt chưa giao</a></li>
+        <li role="presentation"><a style="color:#ed71a3; font-size:19px;" href="@Url.Action("DaDuyetdaGiao","QuanLiDonHang")">Đã giao <span class="badge"></span></a></li>
+    </ul>
+
+</div>
+<br />
+
+<div>
+    @webGrid.GetHtml(
+            tableStyle: "tablesp",
+            headerStyle: "gridhead",
+            footerStyle: "gỉdfooter",
+            rowStyle: "gridrow",
+            alternatingRowStyle: "gridaltrow",
+            columns: webGrid.Columns(
+                webGrid.Column("ID", header: "Mã đơn hàng", style: "id"),
+                webGrid.Column("UserID", header: "Mã khách hàng",style: "gia"),
+                webGrid.Column("UserName", header: "Tên khách hàng",style: "gia"),
+
+                webGrid.Column("UserAddress", header: "Địa chỉ", style: "gia"),
+                webGrid.Column("UserPhone", header: "Số điện thoại", style: "gia"),
+                webGrid.Column("NgayDat", header: "Ngày đặt"),
+                webGrid.Column("TinhTrangDonhang", header: "Tình trạng đơn hàng", style: "gia"),
+                webGrid.Column("TrinhTrangGiaohang", header: "Ngày giao dự kiến", style: "gia"),
+                webGrid.Column("Thanhtien", header: "Tổng tiền", style: "gia"),
+                webGrid.Column(format: c => @Html.ActionLink("Duyệt ", "DuyetDonHang", new { id = c.ID} ))
+  //webGrid.Column(format: c => @Html.ActionLink("Sửa", "uploadsp", new { id = c.ID })),
+  //webGrid.Column(format: c => @Html.ActionLink("Xóa", "Deletesp", new { id = c.ID }))
+  ))
+
+</div>
+<style>
+
+
+    .tablesp {
+        width: 100%;
+        color: #ed71a3;
+        border: 1px solid #ed71a3;
+        display: table;
+    }
+
+    .gridhead {
+        background-color: #ed71a3;
+        text-align: center;
+    }
+
+        .gridhead > th > a {
+            color: white;
+            font-size: 12px;
+            text-align: center;
+            display: table-cell;
+        }
+
+    .id {
+        display: table-cell;
+        text-align: center;
+    }
+
+    .ten {
+        text-align: center;
+    }
+
+    .gia {
+        text-align: center;
+    }
+</style>
+

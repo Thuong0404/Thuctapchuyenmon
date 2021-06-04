@@ -1,0 +1,62 @@
+﻿@using Thuctapchuyenmon.Models
+@model IEnumerable<NhomSP>
+@{
+    Layout = null;
+    //khoi tao control wwebgird
+    WebGrid webGrid = new WebGrid(source:Model, rowsPerPage: 5);
+}
+
+<h2 style=" color: #ed71a3; text-align:center">Danh sách danh mục sản phẩm</h2>
+<div class="grid-product">
+
+
+    @webGrid.GetHtml(
+        tableStyle: "tablesp",
+        headerStyle: "gridhead",
+        footerStyle: "gỉdfooter",
+        rowStyle: "gridrow",
+        alternatingRowStyle: "gridaltrow",
+        columns: webGrid.Columns(
+            webGrid.Column("ID", "Mã sanh mục", style: "id"),
+            webGrid.Column("Name", "Tên danh mục", style: "ten"),
+            webGrid.Column("Anh", "Ảnh", style: "anh", format: c => @Html.Raw("<img  width=\"200\" height=\"200\"  src=\"../content/images/" + c.Anh + "\" >")),
+             webGrid.Column(format: c => @Html.ActionLink("Thêm", "ThemDMSP", new { Hinhanh = c.Anh })),
+            webGrid.Column(format: c => @Html.ActionLink("Sửa", "uploadDMSP", new { id = c.ID })),
+            webGrid.Column(format: c => @Html.ActionLink("Xóa", "DeleteDMSP", new { id = c.ID }))
+           ))
+</div>
+
+<style>
+
+
+    .tablesp {
+        width: 900px;
+        color: #ed71a3;
+        border: 1px solid #ed71a3;
+        display: table;
+    }
+
+    .gridhead {
+        background-color: #ed71a3;
+        text-align: center;
+    }
+
+        .gridhead > th > a {
+            color: white;
+            text-align: center;
+            display: table-cell;
+        }
+
+    .id {
+        display: table-cell;
+        text-align: center;
+    }
+
+    .ten {
+        text-align: center;
+    }
+
+    .gia {
+        text-align: center;
+    }
+</style>
