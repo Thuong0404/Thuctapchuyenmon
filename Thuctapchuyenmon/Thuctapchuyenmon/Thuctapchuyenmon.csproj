@@ -131,6 +131,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Common\Encryptor.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -617,6 +618,7 @@
     <Content Include="Views\QuanLiDonHang\DaDuyetdaGiao.cshtml" />
     <Content Include="Views\QuanLiDonHang\DuyetDonHang.cshtml" />
     <Content Include="Views\QuanLiDonHang\ThongKe.cshtml" />
+    <Content Include="Views\QuanLisanpham\QuanliUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Base\" />

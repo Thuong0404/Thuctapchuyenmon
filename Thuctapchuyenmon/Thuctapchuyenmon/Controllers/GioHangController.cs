@@ -32,6 +32,16 @@ namespace Thuctapchuyenmon.Controllers
             }
             return listgiohang;
         }
+        //public List<GioHang> LayHang(CTGH cTGH)
+        //{
+        //    List<GioHang> lisGiohang = Session["GioHang"] as List<GioHang>;
+        //    if (Session["Taikhoan"] != null && lisGiohang.Count>0) {
+        //        cTGH.Id_SP=lisGiohang(c=>c.M)
+
+
+        //    }
+        //}
+
         //Them giỏ hàng
         public ActionResult ThemvaoGioHang(int MaSp, string url)
         {

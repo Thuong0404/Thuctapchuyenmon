@@ -16,6 +16,11 @@ namespace Thuctapchuyenmon.Controllers
         {
             return View(db.SanPhams);
         }
+        public ActionResult QuanliUser()
+        {
+
+            return View(db.Admins);
+        }
         [HttpGet]
         public ActionResult Themsp()
         {

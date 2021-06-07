@@ -4,15 +4,30 @@
     Layout = "~/Views/Home/layoutAdmin.cshtml";
     WebGrid webGrid = new WebGrid(source: Model, rowsPerPage: 20);
 }
-<h2 style=" color: #ed71a3; text-align:center">Danh sách đơn hàng </h2>
-<div class="ten">
-    <ul class="nav nav-pills" role="tablist">
+<h2 style=" color: #ed71a3; font-size:19px ;text-align:center">Danh sách đơn hàng </h2>
+<div>
+    <table>
+        <tr>
+            <td>
+                <ul class="nav nav-pills" role="tablist">
 
-        <li role="presentation" class="active"><a style="color:white; font-size:19px; background:#ed71a3" href="@Url.Action("ChuaDuyetChuaGiao","QuanLiDonHang")">Chưa duyệt <span class="badge"></span></a></li>
-        <li role="presentation"><a style="color:#ed71a3; font-size:19px;" href="@Url.Action("DaDuyetChuaGiao","QuanLiDonHang")">Đã duyệt chưa giao</a></li>
-        <li role="presentation"><a style="color:#ed71a3; font-size:19px;" href="@Url.Action("DaDuyetdaGiao","QuanLiDonHang")">Đã giao <span class="badge"></span></a></li>
-    </ul>
+                    <li role="presentation" class="active"><a style="color:#ed71a3; font-size:15px;" href="@Url.Action("ChuaDuyetChuaGiao","QuanLiDonHang")">Chưa duyệt</a></li>
+                </ul>
+            </td>
+            <td>
+                <ul class="nav nav-pills" role="tablist">
 
+                    <li role="presentation"><a style="color:#ed71a3; font-size:15px;" href="@Url.Action("DaDuyetChuaGiao","QuanLiDonHang")">Đã duyệt </a></li>
+                </ul>
+            </td>
+            <td>
+                <ul class="nav nav-pills" role="tablist">
+
+                    <li role="presentation" ><a style="color:#ed71a3; font-size:15px;" href="@Url.Action("DaDuyetdaGiao","QuanLiDonHang")">Đã giao </a></li>
+                </ul>
+            </td>
+        </tr>
+    </table>
 </div>
 <br />
 
@@ -25,8 +40,8 @@
             alternatingRowStyle: "gridaltrow",
             columns: webGrid.Columns(
                 webGrid.Column("ID", header: "Mã đơn hàng", style: "id"),
-                webGrid.Column("UserID", header: "Mã khách hàng",style: "gia"),
-                webGrid.Column("UserName", header: "Tên khách hàng",style: "gia"),
+                webGrid.Column("UserID", header: "Mã khách hàng", style: "gia"),
+                webGrid.Column("UserName", header: "Tên khách hàng", style: "gia"),
 
                 webGrid.Column("UserAddress", header: "Địa chỉ", style: "gia"),
                 webGrid.Column("UserPhone", header: "Số điện thoại", style: "gia"),
@@ -34,7 +49,7 @@
                 webGrid.Column("TinhTrangDonhang", header: "Tình trạng đơn hàng", style: "gia"),
                 webGrid.Column("TrinhTrangGiaohang", header: "Ngày giao dự kiến", style: "gia"),
                 webGrid.Column("Thanhtien", header: "Tổng tiền", style: "gia"),
-                webGrid.Column(format: c => @Html.ActionLink("Duyệt ", "DuyetDonHang", new { id = c.ID} ))
+                webGrid.Column(format: c => @Html.ActionLink("Duyệt ", "DuyetDonHang", new { id = c.ID }))
   //webGrid.Column(format: c => @Html.ActionLink("Sửa", "uploadsp", new { id = c.ID })),
   //webGrid.Column(format: c => @Html.ActionLink("Xóa", "Deletesp", new { id = c.ID }))
   ))

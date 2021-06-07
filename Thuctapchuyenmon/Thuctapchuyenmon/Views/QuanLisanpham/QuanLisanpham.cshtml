@@ -3,6 +3,7 @@
 @model IEnumerable<SanPham>
 @{
     Layout = null;
+    Layout = "~/Views/Home/layoutAdmin.cshtml";
     //khoi tao control wwebgird
     WebGrid webGrid = new WebGrid(source: Model, rowsPerPage: 5);
 }
@@ -19,7 +20,7 @@
             columns: webGrid.Columns(
                 webGrid.Column("ID", "Mã sản phẩm", style: "id"),
                 webGrid.Column("Name", "Tên sản phẩm",style: "ten"),
-                webGrid.Column("Anh", "Ảnh sản phẩm", style: "anh", format: c => @Html.Raw("<img  width=\"200\" height=\"200\"  src=\"../content/images/" + c.Anh + "\" ,height:300px, width:300px>")),
+                webGrid.Column("Anh", "Ảnh sản phẩm", style: "anh", format: c => @Html.Raw("<img  width=\"150\" height=\"150\"  src=\"../content/images/" + c.Anh + "\" ,height:300px, width:300px>")),
 
                 webGrid.Column("Gia", "Giá sản phẩm", style:"gia"),
                  webGrid.Column(format:c=>@Html.ActionLink("Thêm","Themsp",new {Hinhanh=c.Anh })),

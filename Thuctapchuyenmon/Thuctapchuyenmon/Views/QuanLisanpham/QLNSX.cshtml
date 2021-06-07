@@ -2,6 +2,7 @@
 @model IEnumerable<NhaSanXuat>
 @{
     Layout = null;
+        Layout = "~/Views/Home/layoutAdmin.cshtml";
     //khoi tao control wwebgird
     WebGrid webGrid = new WebGrid(source: Model, rowsPerPage: 5);
 }
@@ -36,6 +37,7 @@
         color: #ed71a3;
         border: 1px solid #ed71a3;
         display: table;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr ;
     }
 
     .gridhead {
@@ -50,7 +52,7 @@
         }
 
     .id {
-        display: table-cell;
+       
         text-align: center;
     }
 

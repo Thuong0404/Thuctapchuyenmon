@@ -78,7 +78,7 @@ namespace Thuctapchuyenmon.Controllers
         {
 
 
-            return View(db.SanPhams);
+            return View();
         }
        
         

@@ -2,6 +2,7 @@
 @model IEnumerable<NhomSP>
 @{
     Layout = null;
+    Layout = "~/Views/Home/layoutAdmin.cshtml";
     //khoi tao control wwebgird
     WebGrid webGrid = new WebGrid(source:Model, rowsPerPage: 5);
 }

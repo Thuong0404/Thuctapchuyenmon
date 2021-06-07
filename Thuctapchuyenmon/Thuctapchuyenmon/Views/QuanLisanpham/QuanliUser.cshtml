@@ -1,0 +1,67 @@
+﻿@using Thuctapchuyenmon.Models
+@model IEnumerable<Admin>
+@{
+    ViewBag.Title = "QuanliUser";
+    Layout = "~/Views/Home/layoutAdmin.cshtml";
+     WebGrid webGrid = new WebGrid(source: Model, rowsPerPage: 10);
+}
+
+<h2 style="text-align:center">Danh sách khách hàng</h2>
+<div class="grid-product">
+    @webGrid.GetHtml(
+        tableStyle: "tablesp",
+        headerStyle: "gridhead",
+        footerStyle: "gỉdfooter",
+        rowStyle: "gridrow",
+        alternatingRowStyle: "gridaltrow",
+        columns: webGrid.Columns(
+            webGrid.Column("ID", "Mã khách hàng ", style: "id"),
+            webGrid.Column("UserName", "Tên khách hàng", style: "ten"),
+            webGrid.Column("PassWord", "Mật khẩu", style: "anh"),
+              webGrid.Column("Phone", "Số diện thoại", style: "ten"),
+                webGrid.Column("Address", "Địa chi", style: "ten"),
+                  webGrid.Column("Email", "Email", style: "ten")
+
+
+           ))
+</div>
+
+<style>
+
+
+    .tablesp {
+        width: 980px;
+        color: #ed71a3;
+        border: 1px solid #ed71a3;
+        display: table;
+    
+    }
+
+    .gridhead {
+        background-color: #ed71a3;
+        text-align: center;
+    }
+
+        .gridhead > th > a {
+            color: white;
+            text-align: center;
+            display: table-cell;
+        }
+
+    .id {
+        display: table-cell;
+        text-align: center;
+    }
+
+    .ten {
+        text-align: center;
+    }
+
+    .gia {
+        text-align: center;
+        width:500px;
+    }
+</style>
+
+
+
