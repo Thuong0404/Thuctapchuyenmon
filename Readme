@@ -1,0 +1,23 @@
+Đề tài: Quản lí web bán mĩ phẩm
+Họ và tên : Võ Thị Diệu Thương
+MSSV: 5951071105
+Giảng viên: Thầy Nguyễn Lê Minh. 
+Phần 1: Công nghệ sử dụng:
+• Visual Studio 2019.
+• Asp.net MVC
+• Micosoft SQL Server.  
+Phần 2: Các chức năng đã hoàn thành:
+1.	Xây dựng Cơ sở dữ liệu quản lí web bán mĩ phẩm.
+2.	Mô hình 3 lớp Layers.
+3.	Chức năng Đăng nhập, đăng kí.
+4.	Hiển thị danh mục sản phẩm.
+5.	Hiển thị danh sách sản phẩm theo nhóm sản phẩm.
+6.	Quản lí Sản phẩm(thêm , sửa , xóa…).
+7.	Hiển thị giỏ hàng và chức năng đặt hàng. 
+8.	Thêm, sửa,xóa sản phẩm.
+9.	Quản lí danh mục sản phẩm(thêm , sửa , xóa…).
+10.	Quản lí nhà cung cấp(thêm , sửa , xóa…).
+11.	Tìm kiếm theo tên sản phẩm
+12.	Thống kê tổng tiền, đơn hàng và tổng số lượng sản phẩm với sản phẩm bán ra
+Phần 3: Các chức năng chưa hoàn thành:
+1.	Phân quyền Tài khoản(Admin và Nhân viên).
