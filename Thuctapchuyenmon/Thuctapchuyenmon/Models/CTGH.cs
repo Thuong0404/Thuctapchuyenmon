@@ -12,7 +12,7 @@ namespace Thuctapchuyenmon.Models
         [Key]
         [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Id_SP { get; set; }
+        public int ID_SP { get; set; }
 
         [Key]
         [Column(Order = 1)]
@@ -20,8 +20,6 @@ namespace Thuctapchuyenmon.Models
         public int ID_User { get; set; }
 
         public int? SoLuong { get; set; }
-
-        public double? DonGia { get; set; }
 
         public virtual Admin Admin { get; set; }
 

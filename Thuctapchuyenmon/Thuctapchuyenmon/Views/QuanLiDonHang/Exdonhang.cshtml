@@ -1,0 +1,115 @@
+﻿@model List<Thuctapchuyenmon.Models.DonHang>
+@{
+    ViewBag.Title = "Exdonhang";
+    Layout = "~/Views/Admin/layoutAdmin.cshtml";
+    WebGrid webGrid = new WebGrid(source: Model, rowsPerPage: 10);
+}
+
+
+
+<h2 style=" color: #ed71a3; font-size:19px ;text-align:center">Danh sách đơn hàng </h2>
+<div>
+    <table>
+        <tr>
+            <td>
+                <ul class="nav nav-pills" role="tablist">
+
+                    <li role="presentation" class="active"><a style="color:#ed71a3; font-size:15px;" href="@Url.Action("Exdonhang","QuanLiDonHang")">Danh sách đơn hàng</a></li>
+                </ul>
+            </td>
+            <td>
+                <ul class="nav nav-pills" role="tablist">
+
+                    <li role="presentation"><a style="color:#ed71a3; font-size:15px;" href="@Url.Action("ChuaDuyetChuaGiao","QuanLiDonHang")">Chưa duyệt</a></li>
+                </ul>
+            </td>
+            <td>
+                <ul class="nav nav-pills" role="tablist">
+
+                    <li role="presentation"><a style="color:#ed71a3; font-size:15px;" href="@Url.Action("DaDuyetChuaGiao","QuanLiDonHang")">Đã duyệt </a></li>
+                </ul>
+            </td>
+            <td>
+                <ul class="nav nav-pills" role="tablist">
+
+                    <li role="presentation" ><a style="color:#ed71a3; font-size:15px;" href="@Url.Action("DaDuyetdaGiao","QuanLiDonHang")">Đã giao </a></li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+</div>
+<br />
+<br />
+
+
+
+<div>
+    @webGrid.GetHtml(
+            tableStyle: "tablesp",
+            headerStyle: "gridhead",
+            footerStyle: "gỉdfooter",
+            rowStyle: "gridrow",
+            alternatingRowStyle: "gridaltrow",
+          
+            columns: webGrid.Columns(
+               webGrid.Column("ID", header: "Mã đơn hàng", style: "id"),
+                webGrid.Column("UserID", header: "Mã khách hàng", style: "gia"),
+                webGrid.Column("UserName", header: "Tên khách hàng", style: "gia"),
+
+                webGrid.Column("UserAddress", header: "Địa chỉ", style: "gia"),
+                webGrid.Column("UserPhone", header: "Số điện thoại", style: "gia"),
+                webGrid.Column("NgayDat", header: "Ngày đặt"),
+                webGrid.Column("TinhTrangDonhang", header: "Tình trạng đơn hàng", style: "gia"),
+                webGrid.Column("TrinhTrangGiaohang", header: "Ngày giao dự kiến", style: "gia"),
+                webGrid.Column("Thanhtien", header: "Tổng tiền", style: "gia")
+
+  ))
+
+</div>
+<div style=" padding:10px">
+    @using (Html.BeginForm("Exdonhang", "QuanLiDonHang", FormMethod.Post))
+    {
+        <input style="font-size:15px" type="submit" value="Xuất File Excel đơn hàng" class="button" />
+
+    }
+</div>
+<style>
+
+
+    .tablesp {
+        width: 100%;
+        color: #ed71a3;
+        border: 1px solid #ed71a3;
+        display: table;
+    }
+
+    .gridhead {
+        padding:5px;
+            grid-area: header;
+            width:100%;
+            height:100px;
+            background-color:yellow;
+        }
+        
+    }
+
+        .gridhead > th > a {
+            color: white;
+            font-size: 12px;
+            text-align: center;
+            display: table-cell;
+        }
+
+    .id {
+        display: table-cell;
+        text-align: center;
+    }
+
+    .ten {
+        text-align: center;
+    }
+
+    .gia {
+        text-align: center;
+    }
+</style>

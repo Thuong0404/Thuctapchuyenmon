@@ -1,0 +1,23 @@
+﻿@using Thuctapchuyenmon.Models;
+
+@model IEnumerable<GioHang> 
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>XemGioHang</title>
+</head>
+<body>
+    <div class="cart">
+        <a style="color:#ed71a3" href="@Url.Action("GioHang", "GioHang")"><span> </span>@ViewBag.Tinhtonhtien.000 VNĐ (@ViewBag.Tinhtongsl sp)  </a>
+    </div>
+
+
+</body>
+</html>

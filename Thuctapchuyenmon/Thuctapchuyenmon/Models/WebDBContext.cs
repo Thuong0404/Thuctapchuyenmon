@@ -19,7 +19,6 @@ namespace Thuctapchuyenmon.Models
         public virtual DbSet<NhaSanXuat> NhaSanXuats { get; set; }
         public virtual DbSet<NhomSP> NhomSPs { get; set; }
         public virtual DbSet<SanPham> SanPhams { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -69,7 +68,7 @@ namespace Thuctapchuyenmon.Models
             modelBuilder.Entity<SanPham>()
                 .HasMany(e => e.CTGHs)
                 .WithRequired(e => e.SanPham)
-                .HasForeignKey(e => e.Id_SP)
+                .HasForeignKey(e => e.ID_SP)
                 .WillCascadeOnDelete(false);
         }
     }

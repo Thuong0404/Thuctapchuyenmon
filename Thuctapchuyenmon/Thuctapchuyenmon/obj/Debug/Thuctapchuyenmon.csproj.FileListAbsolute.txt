@@ -162,3 +162,5 @@ D:\ThucTapChuyenMon-DieuThuong\Thuctapchuyenmon\Thuctapchuyenmon\obj\Debug\Thuct
 D:\ThucTapChuyenMon-DieuThuong\Thuctapchuyenmon\Thuctapchuyenmon\obj\Debug\Thuctapchuyenmon.csproj.CopyComplete
 D:\ThucTapChuyenMon-DieuThuong\Thuctapchuyenmon\Thuctapchuyenmon\obj\Debug\Thuctapchuyenmon.dll
 D:\ThucTapChuyenMon-DieuThuong\Thuctapchuyenmon\Thuctapchuyenmon\obj\Debug\Thuctapchuyenmon.pdb
+D:\ThucTapChuyenMon-DieuThuong\Thuctapchuyenmon\Thuctapchuyenmon\bin\EPPlus.dll
+D:\ThucTapChuyenMon-DieuThuong\Thuctapchuyenmon\Thuctapchuyenmon\bin\EPPlus.xml

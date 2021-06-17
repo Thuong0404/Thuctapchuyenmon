@@ -21,8 +21,8 @@
     <!--header-->
     <div class="header">
         @*@Html.Partial("~/View/Home/Header")*@
-       
-      <div style="background:#ed71a3" class="top-header">
+
+        <div style="background:#ed71a3" class="top-header">
             <div class="container">
                 <div class="top-header-left">
                     <ul class="support">
@@ -45,64 +45,104 @@
             </div>
         </div>
 
-       <div class="bottom-header">
-           @*@Html.Action("Header", "Home");*@
-           <div class="container">
-               <div class="header-bottom-left">
-                   <div class="logo">
-                       <a href="index.html"><img src="~/images/logo.png" alt=" " /></a>
-                   </div>
-                   <div class="search">
-                       @using (Html.BeginForm("TimKiem", "Home"))
-                       {
-                       <input type="text" name="tukhoa" placeholder="Tìm kiếm .....">
+        <div class="bottom-header">
+            @*@Html.Action("Header", "Home");*@
+            <div class="container">
+                <div class="header-bottom-left">
+                    <div class="logo">
+                        <a href="index.html"><img src="~/images/logo.png" alt=" " /></a>
+                    </div>
+                    <div class="search">
+                        @using (Html.BeginForm("TimKiem", "Home"))
+                        {
+                            <input type="text" name="tukhoa" placeholder="Tìm kiếm .....">
 
-                       <input style="background:#ed71a3" type="submit" value="Tìm kiếm">
-                       @*<img src="~/Content/Images/timkiem.png" />*@
-                       }
-                   </div>
-                   <div class="clearfix"> </div>
-               </div>
+                            <input style="background:#ed71a3" type="submit" value="Tìm kiếm">
+                            @*<img src="~/Content/Images/timkiem.png" />*@
+                        }
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+              
+                <div class="header-bottom-right">
+                    <div class="account">
 
-               <div class="header-bottom-right">
-                   <div class="account"><a style="color:#ed71a3" name="account" href="login.html"><span> @ViewBag.Ten </span> </a></div>
-                   <ul class="login">
-                       <li>
-                           <a style="color:#ed71a3" href="/Login/Dangnhap">
-                               <span> </span>LOGIN
-                           </a>
-                       </li> |
-                       <li><a style="color:#ed71a3" href="/Login/TaoTK">SIGN UP</a></li>
-                   </ul>
-                   <div>
-                       @Html.Action("XemGioHang", "GioHang")
-                   </div>
+                        <h8 style="color:#ed71a3">
 
-                   <div class="clearfix"> </div>
-               </div>
-               <div class="clearfix"> </div>
-           </div>
+                            @if (Session["Taikhoan"] != null)
+                            {
+                                <a style="color:#ed71a3" name="account" href="">
+                                    <span>
+                                    </span>
+                                    <h8>
+                                        @ViewBag.Ten
+                                    </h8>
+                                </a>
+                                @Html.ActionLink("LOGINOUT", "DangXuat", "Login")
+
+                            }
+                        </h8>
+
+
+
+
+                    </div>
+                    @if (Session["Taikhoan"] == null)
+                    {
+                        <div class="account">
+                            <a style="color:#ed71a3" name="account" href="/Login/Dangnhap">
+                                <span>
+                                    
+                                </span>
+                                ACCOUNT
+                            </a>
+                            </div>
+                            <ul class="login">
+                                <li>
+                                    <a style="color:#ed71a3" href="/Login/Dangnhap">
+                                        <span> </span>LOGIN
+                                    </a>
+                                </li> |
+                                <li><a style="color:#ed71a3" id="taotk" href="/Login/TaoTK">SIGN UP</a></li>
+                            </ul>
+                            }
+                            <div>
+                                @Html.Action("XemGioHang", "GioHang")
+                            </div>
+
+                            <div class="clearfix"> </div>
+                        </div>
+
+
+                        <div class="clearfix"> </div>
+                    </div>
         </div>
     </div>
     <!---->
-    <div class="container">
-        <table>
-            <tr>
-                <td>
+   
+    
+    
+    <nav style="color:#ed71a3; font-size:15px" class="sidebar sidebar-offcanvas" id="sidebar">
+            <div class="container">
+                <table>
+                    <tr>
+                        <td>
 
-                    @Html.Action("Menu", "Home")
+                            @Html.Action("Menu", "Home")
 
-                </td>
-                <td>
-                    @RenderBody()
+                        </td>
 
-                </td>
+                        <td>
+                            @RenderBody()
 
-            </tr>
+                        </td>
 
-        </table>
-    </div>
+                    </tr>
 
+                </table>
+
+            </div>
+        </nav>
     <div style=" border:solid; color:#ed71a3; margin:15px">
 
         <div class="col-lg-4 col-md-4 col-sm-4">
@@ -126,8 +166,16 @@
             <a style="color:#ed71a3" href="/Home/GioiThieu">Giới thiệu Big Shop</a>
 
         </div>
+        <div class="col-lg-3 col-md-3 col-sm-3">
+            <h4>Dịch vụ giao hàng</h4>
+            <div class="txt_color_2"><a style="color:#ed71a3" href="/Home/Index">Trang chủ</a></div>
+            <a style="color:#ed71a3" href="/Home/GioiThieu">Chính sách giao hang</a>
 
+        </div>
     </div>
 
 </body>
 </html>
+<script>
+
+</script>

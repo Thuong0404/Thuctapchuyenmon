@@ -1,0 +1,345 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title> Chào mừng đến với Big shope  </title>
+
+    <!--theme-style-->
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+
+    <!--//theme-style-->
+    <link href="~/css/style.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!--fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <!--//fonts-->
+    <script src="~/js/jquery.min.js"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Majestic Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="~/Content/Admin/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="~/Content/Admin/vendors/base/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <link rel="stylesheet" href="~/Content/Admin/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="~/Content/Admin/css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="~/Content/Admin/favicon.png" />
+</head>
+<body>
+    <div style="color:#ed71a3; font-size:15px" class="container-scroller">
+
+        <!-- partial:partials/_navbar.html -->
+        <div class="header">
+            @*@Html.Partial("~/View/Home/Header")*@
+
+            <div style="background:#ed71a3" class="top-header">
+                <div class="container">
+                    <div class="top-header-left">
+                        <ul class="support">
+                            <li><a href="#"><label> </label></a></li>
+                            <li style="font-size:13px"><a href="#">Hotline: <span class="live"> 0339866240</span></a></li>
+                        </ul>
+
+                        <ul class="support">
+
+                            <li><img src="~/Content/Images/Gmail-icon.png" /><a href="https://mail.google.com/mail"> <span style="font-size:13px">dieuthuong0404@gmail.com</span></a></li>
+                        </ul>
+                        <ul class="support">
+                            <li class="van"><a href="#"><label> </label></a></li>
+                            <li><a style="font-size:13px" href="#">Free shipping <span class="live">on order over 500</span></a></li>
+                        </ul>
+                        <div class="clearfix"> </div>
+                    </div>
+
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+
+            <div class="bottom-header">
+                @*@Html.Action("Header", "Home");*@
+                <div class="container">
+                    <div class="header-bottom-left">
+                        <div class="logo">
+                            <a href="index.html"><img src="~/images/logo.png" alt=" " /></a>
+                        </div>
+                        <div class="search">
+                            @using (Html.BeginForm("TimKiem", "Home"))
+                            {
+                                <input type="text" name="tukhoa" placeholder="Tìm kiếm .....">
+
+                                <input style="background:#ed71a3;color:white" type="submit" value="Tìm kiếm">
+                                @*<img src="~/Content/Images/timkiem.png" />*@
+                            }
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+
+                    <div class="header-bottom-right">
+                        <div class="account">
+                            <a style="color:#ed71a3" name="account" href="login.html">
+                                <span>
+
+                                    @ViewBag.Ten
+                                    <br />
+                                    @if (Session["Taikhoan"] != null)
+                                    {
+                                        <br />
+                                        @Html.ActionLink("LOGINOUT", "DangXuat", "Login")
+
+                                    }
+                                </span>
+                            </a>
+                        </div>
+                        @if (Session["Taikhoan"] ==null)
+                        {
+                            <ul class="login">
+                                <li style="font-size:13px">
+                                    <a style="color:#ed71a3" href="/Login/Dangnhap">
+                                        <span> </span>LOGIN
+                                    </a>
+                                </li> |
+                                <li style="font-size:13px"><a style="color:#ed71a3" href="/Login/TaoTK">SIGN UP</a></li>
+                            </ul>
+
+                        }
+
+                        <div>
+                            @Html.Action("XemGioHang", "GioHang")
+                        </div>
+
+                        <div class="clearfix"> </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+        </div>
+        <!-- partial -->
+
+        <div style="color:#ed71a3; font-size:15px; padding:10px;border-color:#ed71a3;" class="container-fluid page-body-wrapper">
+            <!-- partial:partials/_sidebar.html -->
+
+            <nav style="color:#ed71a3; font-size:15px" class="sidebar sidebar-offcanvas" id="sidebar">
+                <div class="navbar-brand-wrapper d-flex justify-content-center">
+                    <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
+                        <p style="font-size:25px;margin-left:15px; ">Danh mục</p>
+                        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                            <span class="mdi mdi-sort-variant"></span>
+                        </button>
+                    </div>
+                </div>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/TrangChu">
+                            <i class="mdi mdi-home menu-icon"></i>
+                            <span style="color:#ed71a3; font-size:12px" class="menu-title">Trang chủ</span>
+                        </a>
+                    </li>
+                    @*<li class="nav-item">
+                            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                                <i class="mdi mdi-circle-outline menu-icon"></i>
+                                <span class="menu-title">UI Elements</span>
+                                <i class="menu-arrow"></i>
+                            </a>
+                            <div class="collapse" id="ui-basic">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
+                                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+                                </ul>
+                            </div>
+                        </li>*@
+                    <li class="nav-item">
+                        <a class="nav-link" href="/QuanLisanpham/QuanLisanpham">
+                            <i class="mdi mdi-view-headline menu-icon"></i>
+                            <span style="color:#ed71a3; font-size:12px" class="menu-title">Quản lí sản phẩm</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/QuanLisanpham/QLDMSP">
+                            <i class="mdi mdi-chart-pie menu-icon"></i>
+                            <span style="color:#ed71a3; font-size:12px" class="menu-title">Quản lí danh mục sản phẩm</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/QuanLisanpham/QLNSX">
+                            <i class="mdi mdi-grid-large menu-icon"></i>
+                            <span style="color:#ed71a3; font-size:12px" class="menu-title">Quản lí nhà sản xuất</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/QuanLiDonHang/ChuaDuyetChuaGiao">
+                            <i class="mdi mdi-emoticon menu-icon"></i>
+                            <span style="color:#ed71a3; font-size:12px" class="menu-title">Quản lí đơn hàng</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/QuanLisanpham/QuanliUser">
+                            <i class="mdi mdi-account menu-icon"></i>
+                            <span style="color:#ed71a3; font-size:12px" class="menu-title">Quản lí khách hàng</span>
+
+                        </a>   
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/QuanLiDonHang/ThongKe">
+                            <i class="mdi mdi-file-document-box-outline menu-icon"></i>
+                            <span style="color:#ed71a3; font-size:12px" class="menu-title"> Thống kê</span>
+                        </a>
+                    </li>
+                    @*<li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                            <i class="mdi mdi-account menu-icon"></i>
+                            <span style="color:#ed71a3; font-size:12px" class="menu-title">Xuất file Excel</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="auth">
+                            <ul style="color:#ed71a3; font-size:12px" class="nav flex-column sub-menu">
+                                <li><a class="mdi mdi-account menu-icon" href=""> Khách hàng </a></li>
+                                <li> <a class="mdi mdi-file-document-box-outline menu-icon" href="/QuanLiDonHang/Exdonhang"> Đơn hàng </a></li>
+
+                            </ul>
+                        </div>
+                    </li>*@
+                </ul>
+            </nav>
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="row">
+                        <div class="col-md-12 grid-margin">
+                            <div class="d-flex justify-content-between flex-wrap">
+                                <div class="d-flex align-items-end flex-wrap">
+                                    <div class="mr-md-3 mr-xl-5">
+                                        <h2>Chào mừng đến với Big Shope</h2>
+                                        <p class="mb-md-0">Đây là trang quản trị viên</p>
+                                    </div>
+                                    @*<div class="d-flex">
+                                            <i class="mdi mdi-home text-muted hover-cursor"></i>
+                                            <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;Dashboard&nbsp;/&nbsp;</p>
+                                            <p class="text-primary mb-0 hover-cursor">Analytics</p>
+                                        </div>*@
+                                </div>
+                                <div class="d-flex justify-content-between align-items-end flex-wrap">
+                                    <button type="button" class="btn btn-light bg-white btn-icon mr-3 d-none d-md-block ">
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-light bg-white btn-icon mr-3 mt-2 mt-xl-0">
+                                        <span class="glyphicon">&#x270f;</span>
+                                    </button>
+                                    <button type="button" class="btn btn-light bg-white btn-icon mr-3 mt-2 mt-xl-0">
+                                        <span class="glyphicon">&#xe020;</span>
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 stretch-card grid-margin">
+                        <div class="card bg-gradient-danger card-img-holder text-white">
+                            <div class="card-body">
+
+                                <h4 class="font-weight-normal mb-3">
+                                   Tổng doanh thu <i class="mdi mdi-chart-line mdi-24px float-right"></i>
+                                </h4>
+                                <h2 class="mb-5">@ViewBag.tongdoanhthu</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 stretch-card grid-margin">
+                        <div class="card bg-gradient-info card-img-holder text-white">
+                            <div class="card-body">
+
+                                <h4 class="font-weight-normal mb-3">
+                                   Đơn hàng <i class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
+                                </h4>
+                                <h2 class="mb-5"> @ViewBag.tongdonhang </h2>
+                                <h6 class="card-text"></h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 stretch-card grid-margin">
+                        <div class="card bg-gradient-success card-img-holder text-white">
+                            <div class="card-body">
+                                <h4 class="font-weight-normal mb-3">
+                                    Số lượng truy cập  <i class="mdi mdi-diamond mdi-24px float-right"></i>
+                                </h4>
+                                <h2 class="mb-5">@ViewBag.Soluongtruycap</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        @RenderBody()
+                    </div>
+                    <div style="color:#ed71a3; font-size:15px; padding:15px" class="card">
+
+                        <h4 style=" font-size:15px;color:#ed71a3;" class="card-title">Sản phẩm mới</h4>
+                        <div class="d-flex">
+                            <div class="d-flex align-items-center mr-4 text-muted font-weight-light">
+                                <i class="mdi mdi-account-outline icon-sm mr-2"></i>
+                                <span>DieuThuong</span>
+
+                            </div>
+                            <div class="d-flex align-items-center text-muted font-weight-light">
+                                <i class="mdi mdi-clock icon-sm mr-2"></i>
+                                <span>04/06/2021</span>
+                            </div>
+                        </div>
+                        <table style="padding:10px">
+                            <tr>
+                                <td>
+                                    <a href="/Home/Sanpham/8">   <img style=" width:430px; height:225px; padding:10px" src="~/Content/Images/Nuoc-hoa-Narciso-phupngphuongshop-6-1400x788.jpg" alt="image"></a>
+                                    <a href="/Home/Sanpham/1"> <img style=" width:440px; height:200px; margin-right:10px" src="~/Content/Images/son-li-gia-re-1.png" alt="image"></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="/Home/Sanpham/5"><img style=" width:430px; height:225px;padding:10px " src="~/Content/Images/21.png" alt="image"></a>
+                                    <a href="/Home/Sanpham/2"><img style=" width:440px; height:200px; margin-right:10px" src="~/Content/Images/chong-nang-ngoc-trai-ccwhite-4.png" alt="image"></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="padding:10px">
+                                    <i class="mdi mdi-heart-outline text-muted"></i><i class="mdi mdi-heart-outline text-muted"></i>
+
+                                    Thực tế cho ta thấy không có người phụ nữa xấu chỉ có người phụ nữa chưa biết làm đẹp. Vì vậy hãy làm để đẹp lên từng ngày
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- main-panel ends -->
+                    </div>
+                    <!-- page-body-wrapper ends -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="~/Content/Admin/vendors/base/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <script src="~/Content/Admin/vendors/chart.js/Chart.min.js"></script>
+    <script src="~/Content/Admin/vendors/datatables.net/jquery.dataTables.js"></script>
+    <script src="~/Content/Admin/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="~/Content/Admin/js/off-canvas.js"></script>
+    <script src="~/Content/Admin/js/hoverable-collapse.js"></script>
+    <script src="~/Content/Admin/js/template.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="~/Content/Admin/js/dashboard.js"></script>
+    <script src="~/Content/Admin/js/data-table.js"></script>
+    <script src="~/Content/Admin/js/jquery.dataTables.js"></script>
+    <script src="~/Content/Admin/js/dataTables.bootstrap4.js"></script>
+    <!-- End custom js for this page-->
+
+</body>
+
+</html>

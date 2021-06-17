@@ -54,7 +54,11 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="EPPlus, Version=4.5.3.1, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.5.3.1\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -131,7 +135,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Common\Encryptor.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -149,7 +152,6 @@
     <Compile Include="Models\NhaSanXuat.cs" />
     <Compile Include="Models\NhomSP.cs" />
     <Compile Include="Models\SanPham.cs" />
-    <Compile Include="Models\sysdiagram.cs" />
     <Compile Include="Models\WebDBContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -259,7 +261,6 @@
     <Content Include="Content\Images\login\fonts\font-awesome-4.7.0\HELP-US-OUT.txt" />
     <Content Include="Content\Images\login\fonts\montserrat\OFL.txt" />
     <Content Include="Content\Images\login\js\main.js" />
-    <Content Include="Content\Images\login\logo-dep.jpg" />
     <Content Include="Content\Images\login\nen.jpg" />
     <Content Include="Content\Images\login\tổng-hợp.jpg" />
     <Content Include="Content\Images\login\vendor\animate\animate.css" />
@@ -561,6 +562,8 @@
     <Content Include="Content\Admin\vendors\mdi\fonts\materialdesignicons-webfont.woff" />
     <Content Include="Content\Admin\vendors\mdi\fonts\materialdesignicons-webfont.woff2" />
     <Content Include="Content\Admin\package.json" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -589,7 +592,6 @@
     <Content Include="Views\Home\Menu.cshtml" />
     <Content Include="Views\Home\SanPham.cshtml" />
     <Content Include="Views\Shared\_layoutshare.cshtml" />
-    <Content Include="Views\Home\Admin.cshtml" />
     <Content Include="Views\Login\Create.cshtml" />
     <Content Include="Views\Home\GioiThieu.cshtml" />
     <Content Include="Views\Login\TaoTK1.cshtml" />
@@ -600,9 +602,7 @@
     <Content Include="Views\GioHang\SuaGioHang.cshtml" />
     <Content Include="Views\Home\TimKiem.cshtml" />
     <Content Include="Views\QuanLisanpham\QuanLisanpham.cshtml" />
-    <Content Include="Views\Home\layoutAdmin.cshtml" />
     <Content Include="Views\QuanLisanpham\Themsp.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\QuanLisanpham\uploadsp.cshtml" />
     <Content Include="Views\QuanLisanpham\Deletesp.cshtml" />
     <Content Include="Views\QuanLisanpham\ThemDMSP.cshtml" />
@@ -619,6 +619,12 @@
     <Content Include="Views\QuanLiDonHang\DuyetDonHang.cshtml" />
     <Content Include="Views\QuanLiDonHang\ThongKe.cshtml" />
     <Content Include="Views\QuanLisanpham\QuanliUser.cshtml" />
+    <Content Include="Views\Home\giaohang.cshtml" />
+    <Content Include="Views\Login\Quenmk.cshtml" />
+    <Content Include="Views\QuanLiDonHang\Exdonhang.cshtml" />
+    <Content Include="Views\QuanLiDonHang\Exkhachhang.cshtml" />
+    <Content Include="Views\Admin\layoutAdmin.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Base\" />

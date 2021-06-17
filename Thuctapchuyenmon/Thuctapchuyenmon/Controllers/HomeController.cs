@@ -14,19 +14,23 @@ namespace Thuctapchuyenmon.Controllers
 
         public ActionResult Trangchu()
         {
-            
+            Admin ad = (Admin)Session["Taikhoan"];
+            if(Session["Taikhoan"]!=null) {
+                ViewBag.Ten = ad.UserName;
+            }
 
             return View();
         }
-       
 
+        
         public ActionResult Index()
         {
-           
+
             Admin ad = (Admin)Session["Taikhoan"];
             ViewBag.Ten = ad.UserName;
             return View();
         }
+       
         public ActionResult GioiThieu()
         {
             Admin ad = (Admin)Session["Taikhoan"];
@@ -52,8 +56,11 @@ namespace Thuctapchuyenmon.Controllers
         public ActionResult SanPham(int id)
         {
 
-            //Admin ad = (Admin)Session["Taikhoan"];
-            //ViewBag.Ten = ad.UserName;
+            Admin ad = (Admin)Session["Taikhoan"];
+            if (Session["Taikhoan"] != null)
+            {
+                ViewBag.Ten = ad.UserName;
+            }
 
             //List<GioHang> lisGiohang = (List<GioHang>)Session["GioHang"];
             //ViewBag.Tinhtongsl = lisGiohang.Sum(c => c.SoLuong);
@@ -69,18 +76,28 @@ namespace Thuctapchuyenmon.Controllers
 
         public ActionResult TimKiem(string tukhoa)
         {
-            var listsp = db.SanPhams.Where(c => c.Name.Contains(tukhoa));
-
-
-            return View(listsp.OrderBy(c => c.Name));
+            //Admin ad = (Admin)Session["Taikhoan"];
+            // ViewBag.Ten = ad.UserName;
+             var sp= db.SanPhams.Where(c => c.Name.Contains(tukhoa));
+            if (sp == null)
+            {
+                ViewBag.ThongBao = "Không tìm thấy sản phẩm";
+                return View(0);
+            }
+            else
+            {
+                return View(sp.OrderBy(c => c.Name));
+            }
+                
+            
         }
-        public ActionResult layoutAdmin()
+        public ActionResult giaohang()
         {
 
 
             return View();
         }
-       
-        
+
+
     }
 }

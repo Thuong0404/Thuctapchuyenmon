@@ -32,18 +32,9 @@ namespace Thuctapchuyenmon.Controllers
             }
             return listgiohang;
         }
-        //public List<GioHang> LayHang(CTGH cTGH)
-        //{
-        //    List<GioHang> lisGiohang = Session["GioHang"] as List<GioHang>;
-        //    if (Session["Taikhoan"] != null && lisGiohang.Count>0) {
-        //        cTGH.Id_SP=lisGiohang(c=>c.M)
-
-
-        //    }
-        //}
-
+       
         //Them giỏ hàng
-        public ActionResult ThemvaoGioHang(int MaSp, string url)
+        public ActionResult ThemvaoGioHang(int MaSp )
         {
             //https://localhost:44391/Home 
             SanPham sp = db.SanPhams.SingleOrDefault(c => c.ID == MaSp);
@@ -54,65 +45,98 @@ namespace Thuctapchuyenmon.Controllers
                 return null;
             }
             //lây giỏ hàng xem có tồn tại k
+            Admin ad = (Admin)Session["Taikhoan"];
             List<GioHang> listgiohang = LayGioHang();
             //1 sp đâ tồn tại
             GioHang sp1 = null;
-            if (listgiohang.Count > 0)
+            if (Session["Taikhoan"]==null)
             {
-                sp1 = listgiohang.SingleOrDefault(c => c.MaSP == MaSp);
-
+                return RedirectToAction("Dangnhap", "Login");
             }
-
-            if (sp1 != null)
+            else
             {
-                // co nghia no bao loi bi null so luong mà so luong cua m là kieu int okey chua
-                if (sp.SoLuongTon < sp1.SoLuong)
+                if (listgiohang.Count > 0)
                 {
-                    return View("ThongBao");
+                    sp1 = listgiohang.SingleOrDefault(c => c.MaSP == MaSp);
+
                 }
-                else
+
+                if (sp1 != null)
                 {
-                    sp1.SoLuong++;
-                    sp1.ThanhTien = sp1.SoLuong * sp1.DonGia;
-                    return View();
+
+                    if (sp.SoLuongTon < sp1.SoLuong)
+                    {
+                        return View("ThongBao");
+                    }
+                    else
+                    {
+                        sp1.SoLuong++;
+                        sp1.ThanhTien = sp1.SoLuong * sp1.DonGia;
+                        return View();
+                    }
                 }
 
             }
 
             GioHang gioHang = new GioHang(MaSp);
             listgiohang.Add(gioHang);
-            return RedirectToAction("XemGioHang");
+            CTGH cTGH = new CTGH();
+            cTGH.ID_SP = gioHang.MaSP;
+            cTGH.ID_User = ad.ID;
+            cTGH.SoLuong = gioHang.SoLuong;
+            db.CTGHs.Add(cTGH);
+            db.SaveChanges();
+            return RedirectToAction("GioHang");
 
         }
         // tong sl
         public double TongSoLuong()
         {
             //Layay giỏ hàng
-            List<GioHang> lisGiohang = Session["GioHang"] as List<GioHang>;
-            if (lisGiohang == null)
+            var ad = (Admin)Session["Taikhoan"];
+            if (Session["Taikhoan"]!=null)
             {
-                return 0;
-            }
-            else
-            {
-                return lisGiohang.Sum(c => c.SoLuong);
-            }
+                List<CTGH> cTGHs = db.CTGHs.Where(x => x.ID_User == ad.ID).ToList();
+             
+                if (cTGHs == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return (Double)cTGHs.Sum(x => x.SoLuong);
+
+                }
+            } return 0;
+         
         }
         //tong tien
         public decimal tongtien()
         {
-            List<GioHang> lisGiohang = Session["GioHang"] as List<GioHang>;
-            if (lisGiohang == null)
+            var ad = (Admin)Session["TaiKhoan"];
+            
+            if (Session["Taikhoan"] != null)
             {
-                return 0;
-            }
-            else
-            {
-                return lisGiohang.Sum(c => c.ThanhTien);
-            }
+                List<CTGH> listgiohang = db.CTGHs.Where(x => x.ID_User == ad.ID && x.ID_SP==x.SanPham.ID).ToList();
+                
+                if (listgiohang == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return (decimal)(listgiohang.Sum(x => x.SoLuong * x.SanPham.Gia));
+                }
+            }return 0;
         }
         public ActionResult XemGioHang()
         {
+            Admin ad = (Admin)Session["Taikhoan"];
+            if (Session["Taikhoan"]!=null)
+            {
+              
+                ViewBag.Ten = ad.UserName;
+            }
             if (TongSoLuong() == 0)
             {
                 ViewBag.Tinhtongsl = 0;
@@ -125,39 +149,44 @@ namespace Thuctapchuyenmon.Controllers
                 ViewBag.Tinhtonhtien = tongtien();
 
             }
+           
+           
             return View();
 
         }
         public ActionResult GioHang()
         {
+
             ViewBag.Tinhtongsl = TongSoLuong();
             ViewBag.Tinhtonhtien = tongtien();
             Admin ad = new Admin();
+           
             try {
                ad = (Admin)Session["Taikhoan"];
 
             } catch {
                 ad = new Admin();
             }
-          
-            
-            //ViewBag.Ten = ad.UserName;
-            List<GioHang> listgiohang = LayGioHang();
-            ViewBag.listgiohang = listgiohang;
+            CTGH ct = new CTGH();
+            List<SanPham> sp = new List<SanPham>();
+            if(Session["Taikhoan"]!=null)
+            {
+                 ViewBag.Ten = ad.UserName;
+                ViewBag.listgio = db.CTGHs.Where(x => x.ID_User == ad.ID).ToList();
+               
+                return View(ad);
 
+            }
+            ViewBag.listgio = new List<CTGH>();
             return View(ad);
         }
         [HttpGet]
         public ActionResult SuaGioHang(int MaSp)
         {
 
-            //    Admin ad = (Admin)Session["Taikhoan"];
-            //    ViewBag.Ten = ad.UserName;
-            //kt gio hang
-            if (Session["GioHang"] == null)
-            {
-                return RedirectToAction("TrangChu", "Home");
-            }
+            Admin ad = (Admin)Session["Taikhoan"];
+            ViewBag.Ten = ad.UserName;
+          
             //kt sp co ton tai k
             SanPham sp = db.SanPhams.SingleOrDefault(c => c.ID == MaSp);
             if (sp == null)
@@ -167,61 +196,67 @@ namespace Thuctapchuyenmon.Controllers
                 return null;
             }
             //Lay list hang tư session
-            List<GioHang> listgiohang = LayGioHang();
+            List<CTGH> listgiohang = db.CTGHs.Where(x => x.ID_User == ad.ID).ToList();
             //kt sp co trong gio hang hay chua
-            GioHang sp2 = listgiohang.SingleOrDefault(c => c.MaSP == MaSp);
+           CTGH sp2 =db.CTGHs.Where(x => x.ID_User == ad.ID && x.ID_SP == MaSp).ToList().Last();
             if (sp2 == null)
             {
                 return RedirectToAction("Trangchu", "Home");
             }
-            //ViewBag.GioHang = listgiohang;S
+            //ViewBag.GioHang = listgiohang;
             ViewBag.Giohang = listgiohang;
-     
-            return View(sp2);
+            GioHang DH=new GioHang();
+            DH.SoLuong = int.Parse(sp2.SoLuong.ToString());
+            DH.MaSP = sp2.ID_SP;
+            return View(DH);
         }
         //su li viec cap nhap
         [HttpPost]
         public ActionResult UpdateGioHang(GioHang gioHang)
         {
+            var ad = (Admin)Session["TaiKhoan"];
             SanPham sp3 = db.SanPhams.SingleOrDefault(c => c.ID == gioHang.MaSP);
             if (sp3.SoLuongTon < gioHang.SoLuong)
             {
                 return View("ThongBao");
             }
             //cap nhap gio hang
-            List<GioHang> listgiohang = LayGioHang();
-            GioHang updateGiohang = listgiohang.Find(c => c.MaSP == gioHang.MaSP);
-            updateGiohang.SoLuong = gioHang.SoLuong;
-            updateGiohang.ThanhTien = updateGiohang.SoLuong * updateGiohang.DonGia;
+          
+            var sp2 = db.CTGHs.Where(x => x.ID_User == ad.ID && x.ID_SP == gioHang.MaSP).ToList().Last();
+            sp2.SoLuong = gioHang.SoLuong;
+            db.SaveChanges();
+           
             return RedirectToAction("GioHang");
         }
         public ActionResult XoaGioHang(int MaSp)
         {
-            //Admin ad = (Admin)Session["Taikhoan"];
-            //ViewBag.Ten = ad.UserName;
-            //kt gio hang
-            if (Session["GioHang"] == null)
-            {
-                return RedirectToAction("TrangChu", "Home");
-            }
-            //kt sp co ton tai k
+            Admin ad = (Admin)Session["Taikhoan"];
+            ViewBag.Ten = ad.UserName;
+            
+            ////kt sp co ton tai k
             SanPham sp = db.SanPhams.SingleOrDefault(c => c.ID == MaSp);
             if (sp == null)
             {
                 //đường dẫn bị lỗi
                 Response.StatusCode = 404;
                 return null;
-            }
-            //Lay list hang tư session
-            List<GioHang> listgiohang = LayGioHang();
-            //kt sp co trong gio hang hay chua
-            GioHang sp2 = listgiohang.SingleOrDefault(c => c.MaSP == MaSp);
-            if (sp2 == null)
+            }      
+           var sp2 =db.CTGHs.Where(x => x.ID_User == ad.ID && x.ID_SP==MaSp ).ToList();
+         
+            if (sp2.Count==0)
             {
                 return RedirectToAction("Trangchu", "Home");
             }
+            else
+            {
+                foreach (var item in sp2)
+                {
+                    db.CTGHs.Remove(item);
+                    db.SaveChanges();
+                }
+            }
             //xoa sp
-            listgiohang.Remove(sp2);
+         //   listgiohang.Remove(sp2);
             return RedirectToAction("GioHang");
         }
      
@@ -231,10 +266,7 @@ namespace Thuctapchuyenmon.Controllers
                 Admin ad = mode;
                 ViewBag.Ten = ad.UserName;
                 // kt gio hang
-                if (Session["GioHang"] == null)
-                {
-                    return RedirectToAction("TrangChu", "Home");
-                }
+               
                 ////them thong tin ng sd vao bang admin
                 Admin admin = new Admin();
                 if (Session["Taikhoan"] == null) 
@@ -252,9 +284,9 @@ namespace Thuctapchuyenmon.Controllers
                 
                     db.SaveChanges();
                 }
-            List<GioHang> listgiohang = LayGioHang();
+            List<CTGH> listgiohang = db.CTGHs.Where(x => x.ID_SP == x.SanPham.ID).ToList();
             //1 sp đâ tồn tại
-           
+
             //Them dơn ĐH
             DonHang donHang = new DonHang();
                 donHang.NgayDat = DateTime.Now;
@@ -268,26 +300,47 @@ namespace Thuctapchuyenmon.Controllers
 
 
             db.DonHangs.Add(donHang);
-                db.SaveChanges();
-                //them ctdh
-             
-                foreach (var item in listgiohang)
+      
+            //them ctdh
+
+            foreach (var item in listgiohang)
                 {
                     CTDonHang ctdh = new CTDonHang();
                     ctdh.ID_DH = donHang.ID;
-                    ctdh.ID_SP = item.MaSP;
-                    ctdh.TenSP = item.TenSP;
+                    ctdh.ID_SP = item.ID_SP;
+                    ctdh.TenSP = item.SanPham.Name;
                     ctdh.SoLuong = item.SoLuong;
-                    ctdh.DonGia = item.DonGia;
+                    ctdh.DonGia = item.SanPham.Gia;
                     db.CTDonHangs.Add(ctdh);
-                }
-                db.SaveChanges();
-                Session["GioHang"] = null;
-                return RedirectToAction("GioHang");
 
+             
+
+            }
+            db.SaveChanges();
+
+            // List<CTDonHang>ctdh1 = db.CTDonHangs.Where(c => c.ID_SP == c.SanPham.ID ).ToList();
+            // SanPham sp = new SanPham();
+            // sp.SoLuongTon = (sp.Amount - (int)(ctdh1.SoLuong);
+            //db.SaveChanges();
+            // db.SanPhams.RemovedbRange(lí);
+            db.CTGHs.RemoveRange(listgiohang);
+                db.SaveChanges();
+            List<CTDonHang> ctdh1 = db.CTDonHangs.Where(c => c.ID_DH== c.DonHang.ID).ToList();
+            foreach(var item in ctdh1)
+            {
+                SanPham sanPham =db.SanPhams.Where(c=>c.ID==item.ID_SP).FirstOrDefault();
+                sanPham.SoLuongTon = sanPham.Amount - item.SoLuong;
+                db.SaveChanges();
+            }
+          
+            db.SaveChanges();
+            return RedirectToAction("GioHang","GioHang");
+            //Them ctgh
+          
             
          
         }
+
            
         }
 

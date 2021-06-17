@@ -2,9 +2,10 @@
 @model Admin
 
 
+
 @{
     Layout = null;
-    List<GioHang> gh = (List<GioHang>)ViewBag.listgiohang;
+    List<CTGH> gh = (List<CTGH>)ViewBag.listgio;
     // y bao controler cua view nay dau
 }
 
@@ -124,11 +125,10 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 
-<body id="page-top">
-
-
-    <!--header-->
+<body>
     <div class="header">
+     
+
         <div style="background:#ed71a3" class="top-header">
             <div class="container">
                 <div class="top-header-left">
@@ -151,34 +151,81 @@
                 <div class="clearfix"> </div>
             </div>
         </div>
+
         <div class="bottom-header">
+      
             <div class="container">
                 <div class="header-bottom-left">
                     <div class="logo">
                         <a href="index.html"><img src="~/images/logo.png" alt=" " /></a>
                     </div>
                     <div class="search">
-                        <input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
-                        <input style="background:#ed71a3" type="submit" value="SEARCH">
+                        @using (Html.BeginForm("TimKiem", "Home"))
+                        {
+                            <input type="text" name="tukhoa" placeholder="Tìm kiếm .....">
 
+                            <input style="background:#ed71a3" type="submit" value="Tìm kiếm">
+
+                        }
                     </div>
                     <div class="clearfix"> </div>
                 </div>
+
                 <div class="header-bottom-right">
-                    <div class="account"><a style="color:#ed71a3" href="login.html"><span> @ViewBag.Ten </span> </a></div>
-                    <ul class="login">
-                        <li><a style="color:#ed71a3" href="/Login/Dangnhap"><span> </span>SIN IN</a></li> |
-                        <li><a style="color:#ed71a3" href="/Login/TaoTK">SIGN UP</a></li>
-                    </ul>
+                    <div class="account">
+
+                        <h8 style="color:#ed71a3">
+
+                            @if (Session["Taikhoan"] != null)
+                            {
+                                <a style="color:#ed71a3" name="account" href="">
+                                    <span>
+                                    </span>
+                                    <h8>
+                                        @ViewBag.Ten
+                                    </h8>
+                                </a>
+                                @Html.ActionLink("LOGINOUT", "DangXuat", "Login")
+
+                            }
+                        </h8>
+
+
+
+
+                    </div>
+                    @if (Session["Taikhoan"] == null)
+                    {
+                        <div class="account">
+                            <a style="color:#ed71a3" name="account" href="/Login/Dangnhap">
+                                <span>
+
+                                </span>
+                                ACCOUNT
+                            </a>
+                        </div>
+                        <ul class="login">
+                            <li>
+                                <a style="color:#ed71a3" href="/Login/Dangnhap">
+                                    <span> </span>LOGIN
+                                </a>
+                            </li> |
+                            <li><a style="color:#ed71a3" id="taotk" href="/Login/TaoTK">SIGN UP</a></li>
+                        </ul>
+                    }
+                    
                     <div>
                         @Html.Action("XemGioHang", "GioHang")
                     </div>
+
+                    <div class="clearfix"> </div>
                 </div>
+                
+
                 <div class="clearfix"> </div>
             </div>
         </div>
     </div>
-
     <!-- Masthead-->
     <main role="main">
         <!-- Block content - Đục lỗ trên giao diện bố cục chung, đặt tên là `content` -->
@@ -191,47 +238,47 @@
 
             <h1 class="text-center">Giỏ hàng</h1>
 
-            @{ if (gh.Count == 0)
+            @{ if (gh.ToList().Count == 0)
                 {
-                <h1 style="color:#ed71a3">Không có sản phẩm nào giỏ hàng</h1>
+                    <h1 style="color:#ed71a3">Không có sản phẩm nào giỏ hàng</h1>
                 }
                 else
                 {
-                <table class="table" style="color:#ed71a3; border:solid">
-                    <tr>
-                        <td>Mã sản phẩm</td>
-                        <td>Tên sản phẩm</td>
-                        <td>Hình ảnh</td>
-                        <td>Số lượng  </td>
-                        <td>Giá tiền </td>
-                        <td>Thành tiền </td>
-                    </tr>
-                    @foreach (var item in gh)
-                    {
+                    <table class="table" style="color:#ed71a3; border:solid">
                         <tr>
-                            <td>@item.MaSP</td>
-                            <td>@item.TenSP</td>
-                            <td><img src="~/Content/Images/@item.HAnh" style="width:150px;height:150px" /></td>
-                            <td>@item.SoLuong</td>
-                            <td>@item.DonGia.ToString("").000 đồng</td>
-                            <td>@item.ThanhTien.ToString("").000 đông</td>
-                            <td>
-                                @Html.ActionLink("Sửa", "SuaGioHang", new { @MaSp = item.MaSP })
-                                @Html.ActionLink("Xóa", "XoaGioHang", new { @MaSp = item.MaSP })
-                            </td>
+                            <td>Mã sản phẩm</td>
+                            <td>Tên sản phẩm</td>
+                            <td>Hình ảnh</td>
+                            <td>Số lượng  </td>
+                            <td>Giá tiền </td>
+                            <td>Thành tiền </td>
                         </tr>
-
-                    }
-                </table>
-
-
-                        using (Html.BeginForm("Dathang", "GioHang"))
+                        @foreach (var item in gh)
                         {
-                            <h2 style="text-align:center">Thông tin nhận hàng</h2>
+                            <tr>
+                                <td>@item.SanPham.ID</td>
+                                <td>@item.SanPham.Name</td>
+                                <td><img src="~/Content/Images/@item.SanPham.Anh" style="width:150px;height:150px" /></td>
+                                <td>@item.SoLuong</td>
+                                <td>@item.SanPham.Gia.Value.ToString("N")  đồng</td>
+                                <td>@(item.SoLuong * int.Parse(item.SanPham.Gia.Value.ToString("")))</td>
+                                <td>
+                                    @Html.ActionLink("Sửa", "SuaGioHang", new { @MaSp = item.SanPham.ID })
+                                    @Html.ActionLink("Xóa", "XoaGioHang", new { @MaSp = item.SanPham.ID })
+                                </td>
+                            </tr>
+
+                        }
+                    </table>
+
+
+                    using (Html.BeginForm("Dathang", "GioHang"))
+                    {
+                        <h2 style="text-align:center">Thông tin nhận hàng</h2>
                         @Html.AntiForgeryToken()
 
-                        <div class="form-horizontal">
-                           
+                        <div style="color:#ed71a3" class="form-horizontal">
+
                             <hr />
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="form-group">
@@ -242,13 +289,13 @@
                                 </div>
                             </div>
 
-                            <div class="form-group" type="password">
-                                @Html.LabelFor(model => model.PassWord, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.PassWord, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.PassWord, "", new { @class = "text-danger" })
-                                </div>  
-                            </div>
+                            @*<div class="form-group" type="password">
+                                    @Html.LabelFor(model => model.PassWord, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.PassWord, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.PassWord, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>*@
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -275,21 +322,21 @@
                             </div>
 
 
-                    </div>
+                        </div>
                         <div class="divDathang" style="text-align:right">
 
-                            <button style="color:white; Background:#ed71a3" class="btn btn-primary btn-md" >
+                            <button style="color:white; Background:#ed71a3" class="btn btn-primary btn-md">
                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp; Đặt hàng
                             </button>
                         </div>
 
-                        }
-
-
-
-
                     }
+
+
+
+
                 }
+            }
 
             <a href="/Home/Trangchu" style="color:white; Background:#ed71a3" class="btn btn-warning btn-md">
                 <i class="fa fa-arrow-left"
@@ -297,56 +344,17 @@
             </a>
 
         </div>
-          
+
     </main>
 
-    
+
     <script src="~/Content/Images/login/vendor/jquery/jquery.min.js"></script>
     <script src="~/Content/Images/login/vendor/popperjs/popper.min.js"></script>
     <script src="~/Content/Images/login/vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Custom script - Các file js do mình tự viết -->
     <script src="~/Content/js/app.js"></script>
-    <script >
-        $("#btnDH").click(function () {
-            var loi = 0;
-            if ($('#inputfirstname').val() == "") {
-                $('#TBTen').text("Tên không được phép để trống ");
-                loi++;
-            } else {
-                $('#TBTen').text("");
-            }       
 
-            if ($('#address').val() == "") {
-                $('#TBĐC').text("Địa chỉ không được phép để trống ");
-                 loi++;
-            } else {
-                $('#TBĐC').text("");
-            }      
-            var loi;
-            dingdang = /^[0-9A-Za-z]+[0-9A-Za-z_]*@@[\w\d.]+\.\w{2,4}$/;
-            kiemtra = dingdang.test($("#inputEmailAddress").val());
-            if (!kiemtra) {
-                $('#TBmail').text("Email không hợp lệ");
-                loi++;
-            }
-    
-
-            if ($('#sdt').val() == "") {
-                $('#TBSĐT').text("Số điện thoại không được phép để trống ");
-                  loi++;
-            }
-            else {
-                $('#TBSĐT').text("");
-            }      
-            if (loi != 0) {
-                return false;
-            }
-
-        });
-           
-
-    </script>
 
 </body>
 
