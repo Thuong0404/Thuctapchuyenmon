@@ -95,6 +95,7 @@
                                             @ViewBag.Ten
                                         </h8>
                                     </a>
+                                    <br />
                                     @Html.ActionLink("LOGINOUT", "DangXuat", "Login")
 
                                 }
@@ -122,11 +123,12 @@
                                 </li> |
                                 <li><a style="color:#ed71a3" id="taotk" href="/Login/TaoTK">SIGN UP</a></li>
                             </ul>
+                            <div>
+                                @Html.Action("XemGioHang", "GioHang")
+                            </div>
                         }
 
-                        <div>
-                            @Html.Action("XemGioHang", "GioHang")
-                        </div>
+
 
                         <div class="clearfix"> </div>
                     </div>

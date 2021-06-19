@@ -27,14 +27,17 @@ namespace Thuctapchuyenmon.Controllers
         {
 
             Admin ad = (Admin)Session["Taikhoan"];
-            ViewBag.Ten = ad.UserName;
+            if (Session["Taikhoan"] != null)
+            {
+                ViewBag.Ten = ad.UserName;
+            }
+           
             return View();
         }
        
         public ActionResult GioiThieu()
         {
-            Admin ad = (Admin)Session["Taikhoan"];
-            ViewBag.Ten = ad.UserName;
+           
             //List<GioHang> lisGiohang = (List<GioHang>)Session["GioHang"];
             //ViewBag.Tinhtongsl = lisGiohang.Sum(c => c.SoLuong);
             //ViewBag.Tinhtonhtien = lisGiohang.Sum(c => c.ThanhTien);

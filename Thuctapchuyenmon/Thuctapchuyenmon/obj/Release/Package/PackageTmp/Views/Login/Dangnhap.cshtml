@@ -31,17 +31,17 @@
 <body>
 
     <div style="background:#ed71a3; border:solid" class="container-login100">
-        <div   class="wrap-login100">
-            
+        <div class="wrap-login100">
+
             <div data-tilt="" style="will-change: transform; transform: perspective(400px) rotateX(0deg) rotateY(0deg);">
                 <img width="350" height="350" src="~/Content/Images/login/12.png" a>
 
             </div>
             @using (Html.BeginForm("Dangnhap", "Login"))
             {
-                <div  style="color:#ed71a3; font-size:30px;" class="login100-form-title">
-                Đăng nhập
-            </div>
+                <div style="color:#ed71a3; font-size:30px;" class="login100-form-title">
+                    Đăng nhập
+                </div>
                 <div class="wrap-input100 validate-input alert-validate">
                     <input class="input100" type="text" name="username" required="" placeholder="Username">
 
@@ -52,9 +52,12 @@
 
                 </div>
 
-                <div class="row">
-                    <p style="color:red">@ViewBag.Error</p>
-                </div>
+                if (Session["Taikhoan"]==null)
+                {
+                    <div class="row">
+                        <p style="color:red">@ViewBag.Error</p>
+                    </div>
+                }
                 <div class="container-login100-form-btn">
                     <button style="background:#ed71a3" id="btnDN" class="login100-form-btn">
                         Đăng nhập

@@ -165,7 +165,7 @@
                             <input type="text" name="tukhoa" placeholder="Tìm kiếm .....">
 
                             <input style="background:#ed71a3" type="submit" value="Tìm kiếm">
-                          
+
                         }
                     </div>
                     <div class="clearfix"> </div>
@@ -173,25 +173,37 @@
 
                 <div class="header-bottom-right">
                     <div class="account">
-                        <a style="color:#ed71a3" name="account" href="login.html">
-                            <span>
-                                @ViewBag.Ten
-                                <br />
-                                <h8 style="color:#ed71a3">
-                                    @if (Session["Taikhoan"] != null)
-                                    {
-                                        <br />
-                                        @Html.ActionLink("LOGINOUT", "DangXuat", "Login")
 
-                                    }
-                                </h8>
+                        <h8 style="color:#ed71a3">
 
-                            </span>
+                            @if (Session["Taikhoan"] != null)
+                            {
+                                <a style="color:#ed71a3" name="account" href="">
+                                    <span>
+                                    </span>
+                                    <h8>
+                                        @ViewBag.Ten
+                                    </h8>
+                                </a>
+                                @Html.ActionLink("LOGINOUT", "DangXuat", "Login")
 
-                        </a>
+                            }
+                        </h8>
+
+
+
+
                     </div>
                     @if (Session["Taikhoan"] == null)
                     {
+                        <div class="account">
+                            <a style="color:#ed71a3" name="account" href="/Login/Dangnhap">
+                                <span>
+
+                                </span>
+                                ACCOUNT
+                            </a>
+                        </div>
                         <ul class="login">
                             <li>
                                 <a style="color:#ed71a3" href="/Login/Dangnhap">
@@ -201,13 +213,14 @@
                             <li><a style="color:#ed71a3" id="taotk" href="/Login/TaoTK">SIGN UP</a></li>
                         </ul>
                     }
+                    
                     <div>
                         @Html.Action("XemGioHang", "GioHang")
                     </div>
 
                     <div class="clearfix"> </div>
                 </div>
-                }
+                
 
                 <div class="clearfix"> </div>
             </div>

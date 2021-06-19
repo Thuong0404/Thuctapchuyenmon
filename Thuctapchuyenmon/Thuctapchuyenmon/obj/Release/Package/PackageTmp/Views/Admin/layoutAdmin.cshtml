@@ -83,36 +83,52 @@
 
                     <div class="header-bottom-right">
                         <div class="account">
-                            <a style="color:#ed71a3" name="account" href="login.html">
-                                <span>
 
-                                    @ViewBag.Ten
+                            <h8 style="color:#ed71a3">
+
+                                @if (Session["Taikhoan"] != null)
+                                {
+                                    <a style="color:#ed71a3" name="account" href="">
+                                        <span>
+                                        </span>
+                                        <h8>
+                                            @ViewBag.Ten
+                                        </h8>
+                                    </a>
                                     <br />
-                                    @if (Session["Taikhoan"] != null)
-                                    {
-                                        <br />
-                                        @Html.ActionLink("LOGINOUT", "DangXuat", "Login")
+                                    @Html.ActionLink("LOGINOUT", "DangXuat", "Login")
 
-                                    }
-                                </span>
-                            </a>
+                                }
+                            </h8>
+
+
+
+
                         </div>
-                        @if (Session["Taikhoan"] ==null)
+                        @if (Session["Taikhoan"] == null)
                         {
+                            <div class="account">
+                                <a style="color:#ed71a3" name="account" href="/Login/Dangnhap">
+                                    <span>
+
+                                    </span>
+                                    ACCOUNT
+                                </a>
+                            </div>
                             <ul class="login">
-                                <li style="font-size:13px">
+                                <li>
                                     <a style="color:#ed71a3" href="/Login/Dangnhap">
                                         <span> </span>LOGIN
                                     </a>
                                 </li> |
-                                <li style="font-size:13px"><a style="color:#ed71a3" href="/Login/TaoTK">SIGN UP</a></li>
+                                <li><a style="color:#ed71a3" id="taotk" href="/Login/TaoTK">SIGN UP</a></li>
                             </ul>
-
+                            <div>
+                                @Html.Action("XemGioHang", "GioHang")
+                            </div>
                         }
 
-                        <div>
-                            @Html.Action("XemGioHang", "GioHang")
-                        </div>
+
 
                         <div class="clearfix"> </div>
                     </div>
