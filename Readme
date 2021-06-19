@@ -19,5 +19,12 @@ Phần 2: Các chức năng đã hoàn thành:
 10.	Quản lí nhà cung cấp(thêm , sửa , xóa…).
 11.	Tìm kiếm theo tên sản phẩm
 12.	Thống kê tổng tiền, đơn hàng và tổng số lượng sản phẩm với sản phẩm bán ra
+13. Phân quyền
 Phần 3: Các chức năng chưa hoàn thành:
-1.	Phân quyền Tài khoản(Admin và Nhân viên).
+1.	Tìm kiếm theo giá sản phẩm
+2.
+3.
+Phần 4:Hướng dẫn sửa dụng
+1. Truy cập http://www.dieuthuong.somee.com/
+2. Đăng nhập với tên đăng nhập Thảo với mật khẩu là  admin để đến trang quản trị viên
+3.  Đăng nhập với tên đăng nhập thuong123 với mật khẩu là  12345 để đến trang khách hàng
