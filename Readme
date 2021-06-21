@@ -13,7 +13,7 @@ Phần 2: Các chức năng đã hoàn thành:
 2.	Chức năng Đăng nhập, đăng kí, đăng xuất.
 3.	Hiển thị danh mục sản phẩm.
 4.	Hiển thị danh sách sản phẩm theo nhóm sản phẩm.
-5.  Quản lí Sản phẩm(thêm , sửa , xóa…).
+5.	Quản lí Sản phẩm(thêm , sửa , xóa…).
 6.	Hiển thị giỏ hàng và chức năng đặt hàng.
 7.	Thêm, sửa,xóa sản phẩm.
 8.	Quản lí danh mục sản phẩm(thêm , sửa , xóa…).
@@ -22,12 +22,13 @@ Phần 2: Các chức năng đã hoàn thành:
 11.	Thống kê tổng tiền, đơn hàng và tổng số lượng sản phẩm với sản phẩm bán ra
 12.	Quản lí nhóm sản phẩm(thêm , sửa , xóa…).
 13.	Quản lí nhóm đơn hàng(xem , duyệt đơn hàng).
-14. Xuất file Excel
-15. Mã hóa mật khẩu MD5
-16. Gửi mật khẩu  mới đến gmail khi quên mật khẩu
-17. Gởi mail cho khách hàng khi đơn hàng được duyệt
-18. Lưu thông tin giỏ hàng theo từng khách hàng.
-19. Upload web lên host
+14.	Xuất file Excel
+15.	Mã hóa mật khẩu MD5
+16.	Gửi mật khẩu  mới đến gmail khi quên mật khẩu đối với tài khoản khách hàng.
+17.	Gởi mail cho khách hàng khi đơn hàng được duyệt
+18.	Lưu thông tin giỏ hàng theo từng khách hàng.
+19.	In đơn hàng 
+20.. Upload web lên host
 
 Phần 3: Các chức năng chưa hoàn thành:
 1. Đăng nhập bằng Facebook và Gmail.
@@ -37,3 +38,6 @@ Phần 3: Các chức năng chưa hoàn thành:
 Phần 4:Hướng dẫn sửa dụng
 1. Truy cập http://www.dieuthuong.somee.com/
 2. Tải về, thay đổi DataSource để chạy chương trình.
+
+Xin cảm ơn!!
+
