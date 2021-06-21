@@ -2,29 +2,38 @@
 Họ và tên : Võ Thị Diệu Thương
 MSSV: 5951071105
 Giảng viên: Thầy Nguyễn Lê Minh. 
+
 Phần 1: Công nghệ sử dụng:
-• Visual Studio 2019.
 • Asp.net MVC
-• Micosoft SQL Server.  
+• Micosoft SQL Server. 
+• HTML, Javascript, Jquery, Css, Ajax
+
 Phần 2: Các chức năng đã hoàn thành:
 1.	Xây dựng Cơ sở dữ liệu quản lí web bán mĩ phẩm.
-2.	Mô hình 3 lớp Layers.
-3.	Chức năng Đăng nhập, đăng kí.
-4.	Hiển thị danh mục sản phẩm.
-5.	Hiển thị danh sách sản phẩm theo nhóm sản phẩm.
-6.	Quản lí Sản phẩm(thêm , sửa , xóa…).
-7.	Hiển thị giỏ hàng và chức năng đặt hàng. 
-8.	Thêm, sửa,xóa sản phẩm.
-9.	Quản lí danh mục sản phẩm(thêm , sửa , xóa…).
-10.	Quản lí nhà cung cấp(thêm , sửa , xóa…).
-11.	Tìm kiếm theo tên sản phẩm
-12.	Thống kê tổng tiền, đơn hàng và tổng số lượng sản phẩm với sản phẩm bán ra
-13. Phân quyền
+2.	Chức năng Đăng nhập, đăng kí, đăng xuất.
+3.	Hiển thị danh mục sản phẩm.
+4.	Hiển thị danh sách sản phẩm theo nhóm sản phẩm.
+5.  Quản lí Sản phẩm(thêm , sửa , xóa…).
+6.	Hiển thị giỏ hàng và chức năng đặt hàng.
+7.	Thêm, sửa,xóa sản phẩm.
+8.	Quản lí danh mục sản phẩm(thêm , sửa , xóa…).
+9.	Quản lí nhà cung cấp(thêm , sửa , xóa…).
+10.	Tìm kiếm theo tên sản phẩm
+11.	Thống kê tổng tiền, đơn hàng và tổng số lượng sản phẩm với sản phẩm bán ra
+12.	Quản lí nhóm sản phẩm(thêm , sửa , xóa…).
+13.	Quản lí nhóm đơn hàng(xem , duyệt đơn hàng).
+14. Xuất file Excel
+15. Mã hóa mật khẩu MD5
+16. Gửi mật khẩu  mới đến gmail khi quên mật khẩu
+17. Gởi mail cho khách hàng khi đơn hàng được duyệt
+18.Lưu thông tin giỏ hàng theo từng khách hàng.
+19.Upload web lên host
+
 Phần 3: Các chức năng chưa hoàn thành:
-1.	Tìm kiếm theo giá sản phẩm
-2. Đăng nhập bằng Facebook và Gmail
+1.Đăng nhập bằng Facebook và Gmail.
+2. Thanh toán trực tuyến
 3.
+
 Phần 4:Hướng dẫn sửa dụng
 1. Truy cập http://www.dieuthuong.somee.com/
-2. Đăng nhập với tên đăng nhập Thảo với mật khẩu là  admin để đến trang quản trị viên
-3.  Đăng nhập với tên đăng nhập thuong123 với mật khẩu là  12345 để đến trang khách hàng
+2. Tải về, thay đổi DataSource để chạy chương trình.
