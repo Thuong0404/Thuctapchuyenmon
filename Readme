@@ -26,11 +26,11 @@ Phần 2: Các chức năng đã hoàn thành:
 15. Mã hóa mật khẩu MD5
 16. Gửi mật khẩu  mới đến gmail khi quên mật khẩu
 17. Gởi mail cho khách hàng khi đơn hàng được duyệt
-18.Lưu thông tin giỏ hàng theo từng khách hàng.
-19.Upload web lên host
+18. Lưu thông tin giỏ hàng theo từng khách hàng.
+19. Upload web lên host
 
 Phần 3: Các chức năng chưa hoàn thành:
-1.Đăng nhập bằng Facebook và Gmail.
+1. Đăng nhập bằng Facebook và Gmail.
 2. Thanh toán trực tuyến
 3.
 
